@@ -138,7 +138,7 @@ li {
   margin: 0 20px;
   height: 24px;
   line-height: 24px;
-  border-bottom: 1px solid #dfdfdf;
+  /* border-bottom: 1px solid #dfdfdf; */
   border-left: 4px solid #06f;
   padding-left: 6px;
 }
