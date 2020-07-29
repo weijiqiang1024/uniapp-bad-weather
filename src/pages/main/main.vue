@@ -4,10 +4,6 @@
 			<view class="title">
 				您好 {{userName}}，您已成功登录。
 			</view>
-			<view class="ul">
-				<view>这是 uni-app 带登录模板的示例App首页。</view>
-				<view>在 “我的” 中点击 “退出” 可以 “注销当前账户”</view>
-			</view>
 		</view>
 		<view v-if="!hasLogin" class="hello">
 			<view class="title">
@@ -34,34 +30,34 @@
 			let uniIdToken = uni.getStorageSync('uniIdToken')
 			this.login(uni.getStorageSync('username'))
 			if (uniIdToken) {
-				uniCloud.callFunction({
-					name: 'user-center',
-					data: {
-						action: 'checkToken',
-					},
-					success: (e) => {
+				// uniCloud.callFunction({
+				// 	name: 'user-center',
+				// 	data: {
+				// 		action: 'checkToken',
+				// 	},
+				// 	success: (e) => {
 
-						console.log('checkToken success', e);
+				// 		console.log('checkToken success', e);
 
-						if (e.result.code > 0) {
-							//token过期或token不合法，重新登录
-							if (this.forcedLogin) {
-								uni.reLaunch({
-									url: '../login/login'
-								});
-							} else {
-								uni.navigateTo({
-									url: '../login/login'
-								});
-							}
-						}
-					},
-					fail(e) {
-						uni.showModal({
-							content: JSON.stringify(e)
-						})
-					}
-				})
+				// 		if (e.result.code > 0) {
+				// 			//token过期或token不合法，重新登录
+				// 			if (this.forcedLogin) {
+				// 				uni.reLaunch({
+				// 					url: '../login/login'
+				// 				});
+				// 			} else {
+				// 				uni.navigateTo({
+				// 					url: '../login/login'
+				// 				});
+				// 			}
+				// 		}
+				// 	},
+				// 	fail(e) {
+				// 		uni.showModal({
+				// 			content: JSON.stringify(e)
+				// 		})
+				// 	}
+				// })
 			} else {
 				this.guideToLogin()
 			}

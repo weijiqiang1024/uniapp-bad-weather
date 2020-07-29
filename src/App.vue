@@ -21,6 +21,8 @@ page {
   min-height: 100%;
   display: flex;
   font-size: 14px;
+  color: #314659;
+
 }
 
 /* #ifdef MP-BAIDU */
@@ -133,5 +135,11 @@ button.primary {
   background-color: #06f;
   font-size: 14px;
   letter-spacing: 10px;
+}
+
+button.default {
+  color: #000;
+  background-color: #f8f8f8;
+  font-size: 14px;
 }
 </style>
