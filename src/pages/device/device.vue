@@ -20,13 +20,15 @@
             next-margin="4px"
           >
             <swiper-item class="swiper-item">
-              <view class="swiper-item uni-bg-area">A</view>
+              <view class="swiper-item uni-bg-area">
+                <view class="item-content">AAA</view>
+              </view>
             </swiper-item>
             <swiper-item class="swiper-item">
-              <view class="swiper-item uni-bg-area">B</view>
+              <view class="swiper-item uni-bg-area"><view class="item-content">BBB</view></view>
             </swiper-item>
             <swiper-item class="swiper-item">
-              <view class="swiper-item uni-bg-area">C</view>
+              <view class="swiper-item uni-bg-area"><view class="item-content">CCC</view></view>
             </swiper-item>
           </swiper>
         </view>
@@ -118,5 +120,9 @@ export default {
   width: 90%;
   border-radius: 10px;
   /* box-shadow: 0 0px 1px 1px rgba(255, 255, 255, 0.1); */
+}
+
+.item-content{
+  padding:10px;
 }
 </style>
