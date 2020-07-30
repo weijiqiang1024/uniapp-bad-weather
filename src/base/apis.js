@@ -24,6 +24,9 @@ export default {
     apis: {
         login(data) {
             return minRequest.post('/api/sys_users/webLogin', data)
+        },
+        querySystem(data){
+            return minRequest.post('/api/s_surveillance_systems/list', data)
         }
     }
 }
