@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     backToPre() {
+      //返回上一级菜单
       uni.navigateBack({
         delta: 1,
       });

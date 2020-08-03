@@ -46,8 +46,8 @@
       </view>
     </view>
     <view class="btn-row logout-btn">
-      <button v-if="!hasLogin" type="primary" class="primary" @tap="bindLogin">登录</button>
-      <button v-if="hasLogin" type="default" @tap="bindLogout" class="default">退出登录</button>
+      <!-- <button v-if="!hasLogin" type="primary" class="primary" @tap="bindLogin">登录</button> -->
+      <button type="primary" @tap="bindLogout" class="primary">退出登录</button>
     </view>
   </view>
 </template>
@@ -65,10 +65,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["hasLogin", "forcedLogin"]),
+    ...mapState({hasLogin:"user/hasLogin", forcedLogin:"user/forcedLogin"}),
   },
   methods: {
-    ...mapMutations(["logout"]),
+    ...mapMutations({logout:"user/logout"}),
     bindLogin() {
       uni.navigateTo({
         url: "../login/login",

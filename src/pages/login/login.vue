@@ -17,13 +17,13 @@
       <navigator url="../reg/reg">注册账号</navigator>
       <text>|</text>
       <navigator url="../pwd/pwd">忘记密码</navigator>
-    </view> -->
+    </view>-->
     <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
       <!-- <view class="oauth-image" v-for="provider in providerList" :key="provider.value"> -->
-        <!-- <image :src="provider.image" @tap="oauth(provider.value)" /> -->
-        <!-- #ifdef MP-WEIXIN -->
-        <!-- <button v-if="!isDevtools" open-type="getUserInfo" @getuserinfo="getUserInfo"></button> -->
-        <!-- #endif -->
+      <!-- <image :src="provider.image" @tap="oauth(provider.value)" /> -->
+      <!-- #ifdef MP-WEIXIN -->
+      <!-- <button v-if="!isDevtools" open-type="getUserInfo" @getuserinfo="getUserInfo"></button> -->
+      <!-- #endif -->
       <!-- </view> -->
     </view>
   </view>
@@ -33,6 +33,8 @@
 import service from "../../service.js";
 import { mapState, mapMutations } from "vuex";
 import mInput from "../../components/m-input.vue";
+import MinSocket from "../../base/websocke";
+import config from "../../base/config";
 
 export default {
   components: {
@@ -48,9 +50,9 @@ export default {
       isDevtools: false,
     };
   },
-  computed: mapState(["forcedLogin"]),
+  computed: mapState({ forcedLogi: "user/forcedLogin" }),
   methods: {
-    ...mapMutations(["login"]),
+    ...mapMutations({ login: "user/login" }),
     initProvider() {
       const filters = ["weixin", "qq", "sinaweibo"];
       uni.getProvider({
@@ -116,13 +118,12 @@ export default {
         if (res.ret == 1) {
           uni.setStorageSync("uniIdToken", res.token);
           uni.setStorageSync("username", res.userData[0]["username"]);
-          uni.setStorageSync(
-            "userData",
-            JSON.stringify(res.userData[0])
-          );
+          uni.setStorageSync("userData", JSON.stringify(res.userData[0]));
 
-		  //若用到websocket 在这里订阅
-		  
+          //若用到websocket 在这里订阅
+          let ws = new MinSocket({ wsuri: config.wsuri });
+          //挂载ws为全局对象 便于退出时 销毁
+          this.$ws = ws;
           _self.toMain(_self.username);
           uni.showToast({
             icon: "none",

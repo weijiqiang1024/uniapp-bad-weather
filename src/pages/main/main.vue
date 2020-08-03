@@ -69,7 +69,7 @@ export default {
       searchVal: "",
     };
   },
-  computed: mapState(["forcedLogin", "hasLogin", "userName"]),
+  computed: mapState({forcedLogin:"user/forcedLogin", hasLogin:"user/hasLogin", userName:"user/userName"}),
   onLoad() {
     let uniIdToken = uni.getStorageSync("uniIdToken");
     this.login(uni.getStorageSync("username"));
@@ -84,7 +84,7 @@ export default {
     this.handleSearch();
   },
   methods: {
-    ...mapMutations(["login"]),
+    ...mapMutations({login:"user/login"}),
     guideToLogin() {
       uni.showModal({
         title: "未登录",

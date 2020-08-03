@@ -1,5 +1,6 @@
 
 import MinRequest from './request'
+import baseConfig from "./config";
 
 const minRequest = new MinRequest()
 
@@ -15,7 +16,7 @@ minRequest.interceptors.response((response) => {
 
 // 设置默认配置
 minRequest.setConfig((config) => {
-    config.baseURL = 'http://36.7.79.167:3300'
+    config.baseURL = baseConfig.baseUrl
     return config
 })
 

@@ -1,3 +1,14 @@
+/* 
+ * @Title: 数据请求模块封装 
+ * @Description: Todo 
+ * @Author: weijq@cychina.cn (韦继强) 
+ * @Date: 2020-08-03 14:18:45 
+ * @Last Modified by: weijq@cychina.cn (韦继强)
+ * @Last Modified time: 2020-08-03 15:07:39
+ * @Version:V1.0 
+ * Copyright: Copyright (c) 2017' 
+ */
+
 const config = Symbol('config')
 const isCompleteURL = Symbol('isCompleteURL')
 const requestBefore = Symbol('requestBefore')

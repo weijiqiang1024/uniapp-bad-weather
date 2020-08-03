@@ -6,11 +6,13 @@ import store from './store'
 import MinRequest  from "./base/request";
 import minRequest from "./base/apis";
 
+
 Vue.config.productionTip = false
 
 Vue.use(MinRequest);
 
 Vue.prototype.$store = store
+Vue.prototype.$ws = null;
 
 App.mpType = 'app'
 
