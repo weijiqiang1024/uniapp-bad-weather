@@ -40,13 +40,12 @@
                 class="device-name"
               >{{obj.device_name}}</view>
             </view>
-            <view class="site-detail">
-              <span class="view-detail">查看详情</span>
+            <view class="site-detail" @click="goSiteDetail(item)">
+              <span class="view-detail">详情</span>
               <img
                 src="../../static/img/go_detai.png"
                 alt
                 class="image-class image-detail"
-                @click="goSiteDetail(item)"
               />
             </view>
           </view>

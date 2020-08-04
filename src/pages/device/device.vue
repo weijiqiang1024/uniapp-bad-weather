@@ -1,5 +1,5 @@
 <template>
-  <view class="device-page" :style="{background: `${swiperStyle[current][3]}`}">
+  <view class="device-page" :style="{backgroundImage: `url(${swiperStyle[current][3]})`}">
     <img src="../../static/img/back.png" alt @click="backToPre" class="back-to-pre" />
     <view class="device-content">
       <view class="dvice-info">
@@ -63,6 +63,9 @@ height: '100%',transform: `translate(${swiperStyle[current][2]}%, 0px) translate
 </template>
 
 <script type="text/ecmascript-6">
+import frogBackImage from "../../static/img/frog_back.png";
+import meteoBackImage from "../../static/img/meteo_back.png";
+import videoBackImage from "../../static/img/video_back.png";
 export default {
   onLoad: function (option) {
     //option为object类型，会序列化上个页面传递的参数
@@ -77,9 +80,9 @@ export default {
       newCurrent: 0,
       swiperStyle: {
         //0:[a,b,c]表示对应状态下 panel对应的X偏移
-        0: [0, 100, -100, "#74c69d"],
-        1: [28, 100, 229, "#48bfe3"],
-        2: [357, 156, 200, "#adb5bd"],
+        0: [0, 100, -100, frogBackImage],
+        1: [28, 100, 229, meteoBackImage],
+        2: [357, 156, 200, videoBackImage],
       },
       deviceTypeDic: {
         3: "防撞雾灯",
@@ -112,15 +115,19 @@ export default {
 <style>
 .device-page {
   width: 100%;
+  height: 100vh;
   background: #06f;
   /* padding: 10px; */
-  padding-top: 30px;
+  /* padding-top: 30px; */
+  background-size: 100% 100%;
 }
 
 .back-to-pre {
   width: 20px;
   height: 20px;
   padding-left: 10px;
+  position: relative;
+  top: 30px;
 }
 
 .device-content {
@@ -130,6 +137,8 @@ export default {
 .dvice-info {
   padding: 10px;
   color: #fff;
+  padding-top: 20px;
+
 }
 
 .device-dvice-name,
