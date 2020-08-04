@@ -5,39 +5,41 @@
  * @Author: weijq@cychina.cn (韦继强) 
  * @Date: 2020-08-03 14:18:15 
  * @Last Modified by: weijq@cychina.cn (韦继强)
- * @Last Modified time: 2020-08-03 18:07:22
+ * @Last Modified time: 2020-08-04 10:32:28
  * @Version:V1.0 
  * Copyright: Copyright (c) 2017' 
  */
 
 //  import * as WebSocket from 'ws';
 import moment from "moment";
+import store from "../store";
+import { RECEIVE_MSG } from "../store/mutationType";
 class MinSocket {
     //socket 实例
     ws = null;
     //参数
     params = null;
-    constructor(params){
-         this.params = params
-         this.init();
-     }
-    
-     //初始化
-     init(){
-         let wsuri = this.params.wsuri;
-         debugger;
-         this.ws = uni.connectSocket({
-             url: wsuri, //仅为示例，并非真实接口地址。
-             complete: () => { }
-         });;
+    constructor(params) {
+        this.params = params
+        this.init();
+    }
+
+    //初始化
+    init() {
+        let wsuri = this.params.wsuri;
+        debugger;
+        this.ws = uni.connectSocket({
+            url: wsuri, //仅为示例，并非真实接口地址。
+            complete: () => { }
+        });;
         //  console.log(this.ws,999);
-         this.ws.onOpen(res => this.websocketonopen(res));
-         this.ws.onError(res => this.websocketonerror(res));
-         this.ws.onMessage(res => this.websocketonmessage(res));
-         this.ws.onClose(res => this.websocketclose(res));
-     }
-     
-    websocketonopen(){
+        this.ws.onOpen(res => this.websocketonopen(res));
+        this.ws.onError(res => this.websocketonerror(res));
+        this.ws.onMessage(res => this.websocketonmessage(res));
+        this.ws.onClose(res => this.websocketclose(res));
+    }
+
+    websocketonopen() {
         console.log("WebSocket连接成功");
     }
     websocketonerror(e) {
@@ -50,16 +52,16 @@ class MinSocket {
         //数据接收
         const redata = JSON.parse(e.data);
         switch (redata.ret) {
-            case 1:
-                this.changeMatureMsg(redata.result);
-                break;
+            //发送订阅类型
             case 2:
-                this.ws.send({data:JSON.stringify({ type: "0", value: ["0", "1", "2", "5"] })});
-                break;
-            case 3:
-                this.changeDealMsg();
+                this.ws.send({ data: JSON.stringify({ type: "0", value: ["0", "1", "2", "5"] }) });
                 break;
             default:
+                // receiveMsg(redata);
+                store.commit({
+                    type: `socket/${RECEIVE_MSG}`,
+                    msg: redata
+                });
                 break;
         }
     }

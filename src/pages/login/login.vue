@@ -1,17 +1,36 @@
 <template>
   <view class="content">
+    <view
+      class="sys-title-area"
+      :style="{backgroundImage:`url(${systemTitleImage});height:${windowHeight}px`}"
+    >
+      <span class="sys-name">高速公路</span>
+      <span class="sys-name">恶劣天气预警防控系统</span>
+    </view>
     <view class="input-group">
-      <view class="input-row border">
-        <text class="title">账号：</text>
-        <m-input class="m-input" type="text" clearable focus v-model="username" placeholder="请输入账号"></m-input>
+      <view class="input-row border first-input">
+        <span class="conut-span">
+          <img src="../../static/img/count.png" alt class="count-image" />
+        </span>
+
+        <m-input
+          class="m-input"
+          type="text"
+          clearable
+          focus
+          v-model="username"
+          placeholder="请输入你的账号"
+        ></m-input>
       </view>
       <view class="input-row">
-        <text class="title">密码：</text>
-        <m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+        <span class="conut-span">
+          <img src="../../static/img/pwd.png" alt class="count-image" />
+        </span>
+        <m-input type="password" displayable v-model="password" placeholder="请输入你的密码"></m-input>
       </view>
     </view>
     <view class="btn-row">
-      <button type="primary" class="primary" @tap="bindLogin">登录</button>
+      <button type="primary" class="primary primary-btn" @tap="bindLogin">登录</button>
     </view>
     <!-- <view class="action-row">
       <navigator url="../reg/reg">注册账号</navigator>
@@ -47,7 +66,9 @@ export default {
       username: "",
       password: "",
       positionTop: 0,
+      windowHeight: 0,
       isDevtools: false,
+      systemTitleImage: "../../static/img/sys_title_image.png",
     };
   },
   computed: mapState({ forcedLogi: "user/forcedLogin" }),
@@ -81,6 +102,8 @@ export default {
        * 反向使用 top 进行定位，可以避免此问题。
        */
       this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
+      const { windowWidth, windowHeight } = uni.getSystemInfoSync();
+      this.windowHeight = parseInt(windowWidth / 1.66);
     },
     async bindLogin() {
       /**
@@ -133,35 +156,6 @@ export default {
       } catch (error) {
         console.log(error, 888);
       }
-
-      // uniCloud.callFunction({
-      // 	name: 'user-center',
-      // 	data: {
-      // 		action: 'login',
-      // 		params: data
-      // 	},
-      // 	success: (e) => {
-
-      // 		console.log('login success', e);
-
-      // 		if (e.result.code == 0) {
-      // 			uni.setStorageSync('uniIdToken', e.result.token)
-      // 			uni.setStorageSync('username', e.result.username)
-      // 			_self.toMain(_self.username);
-      // 		} else {
-      // 			uni.showModal({
-      // 				content: e.result.msg
-      // 			})
-      // 			console.log('登录失败', e);
-      // 		}
-
-      // 	},
-      // 	fail(e) {
-      // 		uni.showModal({
-      // 			content: JSON.stringify(e)
-      // 		})
-      // 	}
-      // })
     },
     oauth(value) {
       uni.login({
@@ -226,6 +220,9 @@ export default {
 </script>
 
 <style>
+.content {
+  background-color: #f5f5f5;
+}
 .action-row {
   display: flex;
   flex-direction: row;
@@ -275,5 +272,54 @@ export default {
 .login-button {
   font-size: 14px !important;
   letter-spacing: 10px !important;
+}
+
+.sys-title-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.sys-name {
+  display: inline-block;
+  padding-bottom: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-shadow: rgb(64, 64, 64) 0px 2px 6px;
+}
+
+.conut-span {
+  width: 50px;
+  line-height: 36px;
+  height: 36px;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom: 1px solid #dbdbe0;
+}
+
+.count-image {
+  width: 24px;
+  height: 24px;
+}
+
+.first-input {
+  margin-bottom: 16px;
+}
+
+.primary-btn {
+  margin: 10px 4%;
+  background-color: #06f;
+  font-size: 16px !important;
+  letter-spacing: 4px;
+  height: 40px;
+  border-radius: 40px;
+  line-height: 40px;
 }
 </style>

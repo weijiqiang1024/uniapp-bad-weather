@@ -4,16 +4,19 @@
 			"path": "pages/main/main",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationBarBackgroundColor": "#06f"
+				"navigationBarBackgroundColor": "#06f",
+				"navigationStyle": "custom"
 			}
-		}, {
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录",
-				"navigationBarBackgroundColor": "#06f"
-
-			}
-		}, {
+		},
+		 {
+		 	"path": "pages/login/login",
+		 	"style": {
+		 		"navigationBarTitleText": "登录",
+		 		"navigationBarBackgroundColor": "#06f",
+		 		"navigationStyle": "custom"
+		 	}
+		 },
+		{
 			"path": "pages/reg/reg",
 			"style": {
 				"navigationBarTitleText": "注册",
@@ -27,7 +30,13 @@
 				"navigationBarBackgroundColor": "#06f"
 
 			}
-		}, {
+		},{
+			"path": "pages/meteo/meteo",
+			"style": {
+				"navigationBarTitleText": "能见度",
+				"navigationBarBackgroundColor": "#06f"
+			}
+		} ,{
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -35,6 +44,13 @@
 
 			}
 		}, {
+			"path": "pages/plane/plane",
+			"style": {
+				"navigationBarTitleText": "方案下发",
+				"navigationBarBackgroundColor": "#06f"
+
+			}
+		} ,{
 			"path": "pages/device/device",
 			"style": {
 				"navigationBarTitleText": "设备信息",
@@ -52,6 +68,11 @@
 			"text": "首页",
 			"iconPath": "static/img/home.png",
 			"selectedIconPath": "static/img/homeHL.png"
+		}, {
+			"pagePath": "pages/meteo/meteo",
+			"text": "能见度",
+			"iconPath": "static/img/meteo.png",
+			"selectedIconPath": "static/img/meteoHL.png"
 		}, {
 			"pagePath": "pages/user/user",
 			"text": "我的",

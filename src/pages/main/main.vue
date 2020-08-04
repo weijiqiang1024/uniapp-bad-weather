@@ -1,55 +1,50 @@
 <template>
   <view class="content">
-    <view class="search-area">
-      <input
-        type="text"
-        class="seacrh-input"
-        confirm-type="search"
-        placeholder-style="color:#cccccc"
-        placeholder="请输入点位名称"
-        v-model="searchVal"
-      />
-      <uni-icons
-        :color="'#999999'"
-        class="icon-search"
-        type="search"
-        size="18"
-        @click="handleSearch"
-      />
-      <uni-icons
-        :color="'#999999'"
-        v-if="searchVal!==''"
-        class="icon-clear"
-        type="clear"
-        size="18"
-        @click="clear"
-      />
+    <view
+      class="sys-title-area"
+      :style="{backgroundImage:`url(${systemMainImage});height:${titleImageHeight}px`}"
+    >
+      <!-- <span class="sys-name">高速公路</span>
+      <span class="sys-name">恶劣天气预警防控系统</span>-->
     </view>
     <view class="content-area">
-      <view v-for="(item) in systemArray" :key="item.id">
-        <view class="site-card">
-          <view class="site-icon">
-            <img src="../../static/img/site.png" alt class="image-class" />
-          </view>
-          <view class="site-content">
-            <view class="site-name">{{item.sysName}}</view>
-            <view class="site-device">
-              <view
-                v-for="(obj) in item.devices"
-                :key="obj.id"
-                class="device-name"
-              >{{obj.device_name}}</view>
-            </view>
-          </view>
-          <view class="site-detail">
-            <img
-              src="../../static/img/detail.png"
-              alt
-              class="image-class image-detail"
-              @click="goSiteDetail(item)"
-            />
-          </view>
+      <view class="baner-item banner-top">
+        <view class="baner-item">
+          <img
+            src="../../static/img/video_main.png"
+            alt="视频"
+            :style="{width:`${innerBannerWidth}px`,height:`${bannerItemHeight}px`,marginRight:'10px'}"
+            class="video-main img-tag"
+            @click="gotoPage('video')"
+          />
         </view>
+        <view class="baner-item">
+          <img
+            src="../../static/img/frog_main.png"
+            alt="雾灯"
+            :style="{width:`${innerBannerWidth}px`,height:`${bannerItemHeight}px`}"
+            class="frog-main img-tag"
+            @click="gotoPage('frog')"
+          />
+        </view>
+      </view>
+      <view class="baner-item">
+        <img
+          src="../../static/img/meteo_main.png"
+          alt="能见度仪"
+          :style="{width:`${bannerItemWidth}px`,height:`${bannerItemHeight}px`}"
+          class="meteo-main img-tag"
+          @click="gotoPage('meto')"
+        />
+      </view>
+      <view class="baner-item">
+        <img
+          src="../../static/img/plane_main.png"
+          alt="方案下发"
+          :style="{width:`${bannerItemWidth}px`,height:`${bannerItemHeight}px`}"
+          class="plane-main img-tag"
+          @click="gotoPage('plane')"
+        />
       </view>
     </view>
   </view>
@@ -67,9 +62,20 @@ export default {
       systemArray: [],
       total: 0,
       searchVal: "",
+      windowWidth: 0,
+      titleImageHeight: 0,
+      innerBannerWidth: 0, //内部banner宽度
+      innerBannerHeight: 0, //内部banner高度
+      bannerItemWidth: 0,
+      bannerItemHeight: 0,
+      systemMainImage: "../../static/img/main_title_image.png",
     };
   },
-  computed: mapState({forcedLogin:"user/forcedLogin", hasLogin:"user/hasLogin", userName:"user/userName"}),
+  computed: mapState({
+    forcedLogin: "user/forcedLogin",
+    hasLogin: "user/hasLogin",
+    userName: "user/userName",
+  }),
   onLoad() {
     let uniIdToken = uni.getStorageSync("uniIdToken");
     this.login(uni.getStorageSync("username"));
@@ -84,7 +90,21 @@ export default {
     this.handleSearch();
   },
   methods: {
-    ...mapMutations({login:"user/login"}),
+    ...mapMutations({ login: "user/login" }),
+    initPosition() {
+      /**
+       * 使用 absolute 定位，并且设置 bottom 值进行定位。软键盘弹出时，底部会因为窗口变化而被顶上来。
+       * 反向使用 top 进行定位，可以避免此问题。
+       */
+      this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
+      const { windowWidth, windowHeight } = uni.getSystemInfoSync();
+      this.windowWidth = windowWidth;
+      this.titleImageHeight = parseInt(windowWidth / 1.68);
+      this.bannerItemWidth = windowWidth - 20;
+      this.bannerItemHeight = parseInt(this.bannerItemWidth / 3.06);
+      this.innerBannerWidth = parseInt((this.bannerItemWidth - 10) / 2);
+      this.innerBannerHeight = parseInt(this.innerBannerWidth / 1.48);
+    },
     guideToLogin() {
       uni.showModal({
         title: "未登录",
@@ -124,15 +144,19 @@ export default {
         }
       } catch (error) {}
     },
-    goSiteDetail(data) {
-      console.log(data, 9999);
+    gotoPage(page) {
+      console.log(page, 9999);
       uni.navigateTo({
-        url: "/pages/device/device?siteInfo=" + JSON.stringify(data),
+        url: `/pages/${page}/${page}`,
       });
     },
+
     clear() {
       this.searchVal = "";
     },
+  },
+  onReady() {
+    this.initPosition();
   },
 };
 </script>
@@ -159,73 +183,58 @@ export default {
   line-height: 25px;
 }
 
-.search-area {
+.sys-title-area {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  background-size: 100% 100%;
 }
-
-.seacrh-input {
-  width: 80%;
-  padding: 0 10px;
-  height: 24px;
-  line-height: 24px;
-  border: 1px solid #c8c7cc;
-  border-radius: 24px;
+.sys-name {
+  display: inline-block;
+  padding-bottom: 4px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-shadow: rgb(64, 64, 64) 0px 2px 6px;
 }
 
 .content-area {
-  width: 100%;
-  /* padding: 5%; */
-}
-
-.site-card {
-  display: flex;
-  flex-direction: row;
-  width: 86%;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0px 20px 10px rgba(0, 0, 0, 0.1);
-}
-
-.site-name {
-  padding-bottom: 4px;
-  text-align: center;
-}
-
-.site-content {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  align-items: center;
-  flex-grow: 4;
-}
-
-.site-icon,
-.site-detail {
-  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  flex-grow: 1;
+  /* width: 100%; */
+  padding: 1%;
 }
 
-.site-device {
+.baner-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+  padding-top: 8px;
 }
 
-.device-name {
-  font-size: 12px;
-  color: #a8a7cc;
+.banner-top {
+  padding-top: 0px;
 }
 
-.image-class {
-  width: 32px;
-  height: 32px;
+.baner-item img {
+  position: relative;
+}
+
+.img-tag:after {
+  content: "❯";
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  /* font-weight: 700; */
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 </style>

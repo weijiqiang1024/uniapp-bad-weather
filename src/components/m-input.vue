@@ -1,13 +1,13 @@
 <template>
 	<view class="m-input-view">
 		<input :focus="focus" :type="inputType" :value="value" @input="onInput" class="m-input-input" :placeholder="placeholder"
-		 :password="type==='password'&&!showPassword" @focus="onFocus" @blur="onBlur" />
+		 :password="type==='password'&&!showPassword" @focus="onFocus" @blur="onBlur" placeholder-style="color:#808080 !impotent;"/>
 		<!-- 优先显示密码可见按钮 -->
 		<view v-if="clearable&&!displayable&&value.length" class="m-input-icon">
 			<m-icon color="#666666" type="clear" @click="clear"></m-icon>
 		</view>
 		<view v-if="displayable" class="m-input-icon">
-			<m-icon :style="{color:showPassword?'#666666':'#cccccc'}" type="eye" @click="display"></m-icon>
+			<m-icon :style="{color:showPassword?'#666666':'#D2D2D2'}" type="eye" @click="display"></m-icon>
 		</view>
 	</view>
 </template>
@@ -122,4 +122,6 @@
 		line-height: 20px;
 		color: #666666;
 	}
+
+
 </style>

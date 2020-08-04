@@ -66,13 +66,14 @@ m-input {
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #efeff4;
-  padding: 10px;
+  background-color: #F0F1F6;
+  /* padding: 10px; */
 }
 
 .input-group {
-  background-color: #ffffff;
-  margin-top: 20px;
+  /* background-color: #ffffff; */
+  margin: 0 10%;
+  margin-top: 40px;
   position: relative;
 }
 
@@ -106,6 +107,8 @@ m-input {
   position: relative;
   font-size: 14px;
   line-height: 36px;
+  background: #F5F5F5;
+
 }
 
 .input-row .title {
@@ -134,7 +137,7 @@ button.primary {
   /* background-color: #0faeff; */
   background-color: #06f;
   font-size: 14px;
-  letter-spacing: 10px;
+  letter-spacing: 4px;
 }
 
 button.default {

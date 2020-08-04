@@ -65,10 +65,10 @@ export default {
     };
   },
   computed: {
-    ...mapState({hasLogin:"user/hasLogin", forcedLogin:"user/forcedLogin"}),
+    ...mapState({ hasLogin: "user/hasLogin", forcedLogin: "user/forcedLogin" }),
   },
   methods: {
-    ...mapMutations({logout:"user/logout"}),
+    ...mapMutations({ logout: "user/logout" }),
     bindLogin() {
       uni.navigateTo({
         url: "../login/login",
@@ -77,6 +77,8 @@ export default {
     bindLogout() {
       //实际应该调后台登出接口 可惜后台服务没此接口
       this.logout();
+      debugger;
+      // this.$ws.close();
       uni.removeStorageSync("uniIdToken");
       uni.removeStorageSync("username");
       uni.removeStorageSync("userData");
