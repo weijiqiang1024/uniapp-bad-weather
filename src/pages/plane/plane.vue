@@ -189,11 +189,11 @@ export default {
   width: 86%;
   padding: 10px;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 6px;
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 0px 20px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .site-name {
@@ -204,6 +204,7 @@ export default {
   justify-content: flex-end;
   font-weight: 700;
   padding-left: 6px;
+  color: #333;
 }
 
 .site-content {

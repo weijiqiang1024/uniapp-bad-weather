@@ -28,9 +28,18 @@
 height: '100%',transform: `translate(${swiperStyle[current][0]}%, 0px) translateZ(0px)`}"
             >
               <view class="swiper-item uni-bg-area A">
-                <view
-                  class="item-content"
-                >{{deviceTypeDic[siteInfo['devices'][current]['device_type']]}}</view>
+                <view class="item-content">
+                  <view v-if="siteInfo['devices'][0]['device_type'] == 3">
+                    <frog-component :deviceInfo="siteInfo['devices'][0]"></frog-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][0]['device_type'] == 6">
+                    <meteo-component :deviceInfo="siteInfo['devices'][0]"></meteo-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][0]['device_type'] == 7">
+                    <video-component :deviceInfo="siteInfo['devices'][0]"></video-component>
+                  </view>
+                  <view v-else>无信息</view>
+                </view>
               </view>
             </swiper-item>
             <swiper-item
@@ -39,9 +48,18 @@ height: '100%',transform: `translate(${swiperStyle[current][0]}%, 0px) translate
 height: '100%',transform: `translate(${swiperStyle[current][1]}%, 0px) translateZ(0px)`}"
             >
               <view class="swiper-item uni-bg-area B">
-                <view
-                  class="item-content"
-                >{{deviceTypeDic[siteInfo['devices'][current]['device_type']]}}</view>
+                <view class="item-content">
+                  <view v-if="siteInfo['devices'][1]['device_type'] == 3">
+                    <frog-component :deviceInfo="siteInfo['devices'][1]"></frog-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][1]['device_type'] == 6">
+                    <meteo-component :deviceInfo="siteInfo['devices'][1]"></meteo-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][1]['device_type'] == 7">
+                    <video-component :deviceInfo="siteInfo['devices'][1]"></video-component>
+                  </view>
+                  <view v-else>无信息</view>
+                </view>
               </view>
             </swiper-item>
             <swiper-item
@@ -50,9 +68,18 @@ height: '100%',transform: `translate(${swiperStyle[current][1]}%, 0px) translate
 height: '100%',transform: `translate(${swiperStyle[current][2]}%, 0px) translateZ(0px)`}"
             >
               <view class="swiper-item uni-bg-area C">
-                <view
-                  class="item-content"
-                >{{deviceTypeDic[siteInfo['devices'][current]['device_type']]}}</view>
+                <view class="item-content">
+                  <view v-if="siteInfo['devices'][2]['device_type'] == 3">
+                    <frog-component :deviceInfo="siteInfo['devices'][2]"></frog-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][2]['device_type'] == 6">
+                    <meteo-component :deviceInfo="siteInfo['devices'][2]"></meteo-component>
+                  </view>
+                  <view v-else-if="siteInfo['devices'][2]['device_type'] == 7">
+                    <video-component :deviceInfo="siteInfo['devices'][2]"></video-component>
+                  </view>
+                  <view v-else>无信息</view>
+                </view>
               </view>
             </swiper-item>
           </swiper>
@@ -63,10 +90,19 @@ height: '100%',transform: `translate(${swiperStyle[current][2]}%, 0px) translate
 </template>
 
 <script type="text/ecmascript-6">
-import frogBackImage from "../../static/img/frog_back.png";
-import meteoBackImage from "../../static/img/meteo_back.png";
-import videoBackImage from "../../static/img/video_back.png";
+import frogBackImage from "../../static/img/frog_back.jpg";
+import meteoBackImage from "../../static/img/meteo_back.jpg";
+import videoBackImage from "../../static/img/video_back.jpg";
+import meteoComponent from "./meteoComponent";
+import frogComponent from "./frogComponent";
+import videoComponent from "./videoComponent";
+
 export default {
+  components: {
+    "meteo-component": meteoComponent,
+    "frog-component": frogComponent,
+    "video-component": videoComponent,
+  },
   onLoad: function (option) {
     //option为object类型，会序列化上个页面传递的参数
     console.log(option); //打印出上个页面传递的参数。
@@ -80,8 +116,8 @@ export default {
       newCurrent: 0,
       swiperStyle: {
         //0:[a,b,c]表示对应状态下 panel对应的X偏移
-        0: [0, 100, -100, frogBackImage],
-        1: [28, 100, 229, meteoBackImage],
+        0: [0, 100, -100, meteoBackImage],
+        1: [28, 100, 229, frogBackImage],
         2: [357, 156, 200, videoBackImage],
       },
       deviceTypeDic: {
@@ -89,6 +125,7 @@ export default {
         6: "能见度仪",
         7: "视频",
       },
+      dviceInfo: {},
     };
   },
   methods: {
@@ -102,6 +139,7 @@ export default {
       console.log(e, 88888);
       this.current = e.detail.current;
     },
+    sortDevice() {},
   },
   watch: {
     current: function (oldVal, newVal) {
@@ -138,7 +176,6 @@ export default {
   padding: 10px;
   color: #fff;
   padding-top: 20px;
-
 }
 
 .device-dvice-name,
@@ -168,6 +205,7 @@ export default {
 .uni-bg-area {
   height: calc(100vh - 260px);
   background: #fff;
+  box-shadow: 4px 10px 10px 0px rgba(0, 40, 99, 0.3);
 }
 
 .swiper {
@@ -186,7 +224,12 @@ export default {
 }
 
 .item-content {
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-item-container {
@@ -195,18 +238,18 @@ export default {
 }
 
 .A {
-  color: #fff;
-  background: #52b788;
+  /* color: #fff; */
+  background: #fff;
 }
 
 .B {
-  color: #fff;
-  background: #4ea8de;
+  /* color: #fff; */
+  background: #fff;
 }
 
 .C {
-  color: #fff;
-  background: #6c757d;
+  /* color: #fff; */
+  background: #fff;
 }
 
 .currentPanel {

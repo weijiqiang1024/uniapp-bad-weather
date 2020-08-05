@@ -28,6 +28,16 @@ export default {
         },
         querySystem(data){
             return minRequest.post('/api/s_surveillance_systems/list', data)
-        }
+        },
+        //获取气象设备参数
+        queryMeteoInfo(data) {
+            return minRequest.post('/api/meteorological_data/list', data)
+        },
+        //获取雾灯设备状态参数
+        queryFrogInfo(data) {
+            let url = `/foglight/${data}/status`;
+            return minRequest.get(url)
+        },
+
     }
 }
