@@ -90,9 +90,7 @@ height: '100%',transform: `translate(${swiperStyle[current][2]}%, 0px) translate
 </template>
 
 <script type="text/ecmascript-6">
-import frogBackImage from "../../static/img/frog_back.jpg";
-import meteoBackImage from "../../static/img/meteo_back.jpg";
-import videoBackImage from "../../static/img/video_back.jpg";
+import config from "../../base/config";
 import meteoComponent from "./meteoComponent";
 import frogComponent from "./frogComponent";
 import videoComponent from "./videoComponent";
@@ -110,15 +108,18 @@ export default {
   },
   data() {
     return {
+      frogBackImage: config.backImageUrl + "/frog_back.jpg",
+      meteoBackImage: config.backImageUrl + "/meteo_back.jpg",
+      videoBackImage: config.backImageUrl + "/video_back.jpg",
       siteInfo: this.siteInfo,
       deviceSelect: 3,
       current: 0,
       newCurrent: 0,
       swiperStyle: {
         //0:[a,b,c]表示对应状态下 panel对应的X偏移
-        0: [0, 100, -100, meteoBackImage],
-        1: [28, 100, 229, frogBackImage],
-        2: [357, 156, 200, videoBackImage],
+        0: [0, 100, -100, this.meteoBackImage],
+        1: [28, 100, 229, this.frogBackImage],
+        2: [357, 156, 200, this.videoBackImage],
       },
       deviceTypeDic: {
         3: "防撞雾灯",

@@ -131,7 +131,7 @@ export default {
     goSiteDetail(data) {
       console.log(data, 9999);
       uni.navigateTo({
-        url: "/pages/device/device?siteInfo=" + JSON.stringify(data),
+        url: "/pagesA/device/device?siteInfo=" + JSON.stringify(data),
       });
     },
     clear() {

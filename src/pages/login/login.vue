@@ -32,19 +32,7 @@
     <view class="btn-row">
       <button type="primary" class="primary primary-btn" @tap="bindLogin">登录</button>
     </view>
-    <!-- <view class="action-row">
-      <navigator url="../reg/reg">注册账号</navigator>
-      <text>|</text>
-      <navigator url="../pwd/pwd">忘记密码</navigator>
-    </view>-->
-    <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}">
-      <!-- <view class="oauth-image" v-for="provider in providerList" :key="provider.value"> -->
-      <!-- <image :src="provider.image" @tap="oauth(provider.value)" /> -->
-      <!-- #ifdef MP-WEIXIN -->
-      <!-- <button v-if="!isDevtools" open-type="getUserInfo" @getuserinfo="getUserInfo"></button> -->
-      <!-- #endif -->
-      <!-- </view> -->
-    </view>
+    <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}"></view>
   </view>
 </template>
 
@@ -68,7 +56,7 @@ export default {
       positionTop: 0,
       windowHeight: 0,
       isDevtools: false,
-      systemTitleImage: "../../static/img/sys_title_image.png",
+      systemTitleImage: config.backImageUrl + "/sys_title_image.png",
     };
   },
   computed: mapState({ forcedLogi: "user/forcedLogin" }),

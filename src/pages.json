@@ -1,17 +1,17 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页,
-		{
-			"path": "pages/main/main",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"navigationBarBackgroundColor": "#06f",
-				"navigationStyle": "custom"
-			}
-		},
 		 {
 		 	"path": "pages/login/login",
 		 	"style": {
 		 		"navigationBarTitleText": "登录",
+		 		"navigationBarBackgroundColor": "#06f",
+		 		"navigationStyle": "custom"
+		 	}
+		 },
+		 {
+		 	"path": "pages/main/main",
+		 	"style": {
+		 		"navigationBarTitleText": "首页",
 		 		"navigationBarBackgroundColor": "#06f",
 		 		"navigationStyle": "custom"
 		 	}
@@ -29,22 +29,31 @@
 				"navigationBarBackgroundColor": "#06f"
 
 			}
-		}, {
-			"path": "pages/plane/plane",
+		} 
+	],
+	"subPackages": [{
+		"root": "pagesA",
+		"pages": [ {
+			"path": "plane/plane",
 			"style": {
 				"navigationBarTitleText": "方案下发",
 				"navigationBarBackgroundColor": "#06f"
-
 			}
-		} ,{
-			"path": "pages/device/device",
+		},  {
+			"path": "device/device",
 			"style": {
 				"navigationBarTitleText": "设备信息",
 				"navigationBarBackgroundColor": "#06f",
 				"navigationStyle": "custom"
 			}
+		}]
+	}],
+	"preloadRule": {
+		"pagesA/plane/plane": {
+			"network": "all",
+			"packages": ["__APP__"]
 		}
-	],
+	},
 	"tabBar": {
 		"color": "#7a7e83",
 		"selectedColor": "#0faeff",

@@ -52,6 +52,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import config from "../../base/config";
 // import { uniIcons } from "@dcloudio/uni-ui";
 export default {
   //   components: {
@@ -68,7 +69,7 @@ export default {
       innerBannerHeight: 0, //内部banner高度
       bannerItemWidth: 0,
       bannerItemHeight: 0,
-      systemMainImage: "../../static/img/main_title_image.png",
+      systemMainImage: config.backImageUrl + "/main_title_image.png",
     };
   },
   computed: mapState({
@@ -147,7 +148,7 @@ export default {
     gotoPage(page) {
       console.log(page, 9999);
       uni.navigateTo({
-        url: `/pages/${page}/${page}`,
+        url: `/pagesA/${page}/${page}`,
       });
     },
 
