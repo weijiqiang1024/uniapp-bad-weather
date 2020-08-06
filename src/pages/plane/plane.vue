@@ -211,7 +211,7 @@ export default {
   display: flex;
   flex-direction: row;
   /* justify-content: space-between; */
-  align-items: center;
+  align-items: flex-end;
 }
 
 .site-icon {

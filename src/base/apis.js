@@ -26,7 +26,7 @@ export default {
         login(data) {
             return minRequest.post('/api/sys_users/webLogin', data)
         },
-        querySystem(data){
+        querySystem(data) {
             return minRequest.post('/api/s_surveillance_systems/list', data)
         },
         //获取气象设备参数
@@ -34,9 +34,11 @@ export default {
             return minRequest.post('/api/meteorological_data/list', data)
         },
         //获取雾灯设备状态参数
-        queryFrogInfo(data) {
-            let url = `/foglight/${data}/status`;
-            return minRequest.get(url)
+        queryFrogInfo(url) {
+            return minRequest.get(url, {}, { baseURL: baseConfig.frogUrl })
+        },
+        publishFrogInfo(url) {
+            return minRequest.post(url, {}, { baseURL: baseConfig.frogUrl })
         },
 
     }

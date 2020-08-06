@@ -17,20 +17,6 @@
 		 	}
 		 },
 		{
-			"path": "pages/reg/reg",
-			"style": {
-				"navigationBarTitleText": "注册",
-				"navigationBarBackgroundColor": "#06f"
-
-			}
-		}, {
-			"path": "pages/pwd/pwd",
-			"style": {
-				"navigationBarTitleText": "找回密码",
-				"navigationBarBackgroundColor": "#06f"
-
-			}
-		},{
 			"path": "pages/meteo/meteo",
 			"style": {
 				"navigationBarTitleText": "能见度",
