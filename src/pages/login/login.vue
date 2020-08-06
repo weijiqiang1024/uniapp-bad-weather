@@ -94,6 +94,7 @@ export default {
       this.windowHeight = parseInt(windowWidth / 1.66);
     },
     async bindLogin() {
+      debugger;
       /**
        * 客户端对账号信息进行一些必要的校验。
        * 实际开发中，根据业务需要进行处理，这里仅做示例。
@@ -125,7 +126,6 @@ export default {
 
       try {
         let res = await this.$minApi.login(data);
-        console.log(res, 999);
         if (res.ret == 1) {
           uni.setStorageSync("uniIdToken", res.token);
           uni.setStorageSync("username", res.userData[0]["username"]);
@@ -138,10 +138,19 @@ export default {
           _self.toMain(_self.username);
           uni.showToast({
             icon: "none",
-            title: "登录成功",
+            title: res.msg,
+          });
+        }else{
+          uni.showToast({
+            icon: "none",
+            title: res.msg,
           });
         }
       } catch (error) {
+         uni.showToast({
+            icon: "none",
+            title: "登录失败",
+          });
         console.log(error, 888);
       }
     },

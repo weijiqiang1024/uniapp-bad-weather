@@ -107,19 +107,22 @@ export default {
     this.siteInfo = JSON.parse(option.siteInfo);
   },
   data() {
+    let frogBackImage =config.backImageUrl + "/frog_back.jpg",
+      meteoBackImage = config.backImageUrl + "/meteo_back.jpg",
+      videoBackImage = config.backImageUrl + "/video_back.jpg";
     return {
-      frogBackImage: config.backImageUrl + "/frog_back.jpg",
-      meteoBackImage: config.backImageUrl + "/meteo_back.jpg",
-      videoBackImage: config.backImageUrl + "/video_back.jpg",
+      frogBackImage: frogBackImage,
+      meteoBackImage: meteoBackImage,
+      videoBackImage: videoBackImage,
       siteInfo: this.siteInfo,
       deviceSelect: 3,
       current: 0,
       newCurrent: 0,
       swiperStyle: {
         //0:[a,b,c]表示对应状态下 panel对应的X偏移
-        0: [0, 100, -100, this.meteoBackImage],
-        1: [28, 100, 229, this.frogBackImage],
-        2: [357, 156, 200, this.videoBackImage],
+        0: [0, 100, -100, meteoBackImage],
+        1: [28, 100, 229,frogBackImage],
+        2: [357, 156, 200, videoBackImage],
       },
       deviceTypeDic: {
         3: "防撞雾灯",
