@@ -37,8 +37,9 @@ export default {
         queryFrogInfo(url) {
             return minRequest.get(url, {}, { baseURL: baseConfig.frogUrl })
         },
-        publishFrogInfo(url) {
-            return minRequest.post(url, {}, { baseURL: baseConfig.frogUrl })
+        //下发雾灯参数
+        getVideoList(data) {
+            return minRequest.post('/api/d_video_cameras/list',data)
         },
 
     }

@@ -12,7 +12,6 @@ Vue.config.productionTip = false
 Vue.use(MinRequest);
 
 Vue.prototype.$store = store
-Vue.prototype.$ws = null;
 
 App.mpType = 'app'
 

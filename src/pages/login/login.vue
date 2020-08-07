@@ -37,6 +37,7 @@
 </template>
 
 <script>
+// import Vue from "vue";
 import service from "../../service.js";
 import { mapState, mapMutations } from "vuex";
 import mInput from "../../components/m-input.vue";
@@ -135,23 +136,23 @@ export default {
           let ws = new MinSocket({ wsuri: config.wsuri });
           //挂载ws为全局对象 便于退出时 销毁
           this.$ws = ws;
+          
           _self.toMain(_self.username);
           uni.showToast({
             icon: "none",
             title: res.msg,
           });
-        }else{
+        } else {
           uni.showToast({
             icon: "none",
             title: res.msg,
           });
         }
       } catch (error) {
-         uni.showToast({
-            icon: "none",
-            title: "登录失败",
-          });
-        console.log(error, 888);
+        uni.showToast({
+          icon: "none",
+          title: "查询失败",
+        });
       }
     },
     oauth(value) {

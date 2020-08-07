@@ -77,8 +77,12 @@ export default {
     bindLogout() {
       //实际应该调后台登出接口 可惜后台服务没此接口
       this.logout();
+      console.log(this, 9999);
       debugger;
-      // this.$ws.close();
+      if (this.$ws) {
+        this.$ws.ws.close();
+      }
+
       uni.removeStorageSync("uniIdToken");
       uni.removeStorageSync("username");
       uni.removeStorageSync("userData");

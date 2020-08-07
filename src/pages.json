@@ -46,6 +46,12 @@
 				"navigationBarBackgroundColor": "#06f",
 				"navigationStyle": "custom"
 			}
+		}, {
+			"path": "video/video",
+			"style": {
+				"navigationBarTitleText": "视频设备",
+				"navigationBarBackgroundColor": "#06f"
+			}
 		}]
 	}],
 	"preloadRule": {

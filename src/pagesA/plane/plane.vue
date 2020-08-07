@@ -125,11 +125,21 @@ export default {
         if (res.ret == 1) {
           this.systemArray = res.datas;
           this.total = res.count;
+        }else{
+          uni.showToast({
+            icon: "none",
+            title: res.msg,
+          });
         }
-      } catch (error) {}
+      } catch (error) {
+        uni.showToast({
+            icon: "none",
+            title: "查询失败",
+          });
+      }
     },
     goSiteDetail(data) {
-      console.log(data, 9999);
+      // console.log(data, 9999);
       uni.navigateTo({
         url: "/pagesA/device/device?siteInfo=" + JSON.stringify(data),
       });

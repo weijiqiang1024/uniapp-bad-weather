@@ -86,7 +86,6 @@ export default {
     }
   },
   mounted() {
-    debugger;
     //默认数据查询
     this.handleSearch();
   },
