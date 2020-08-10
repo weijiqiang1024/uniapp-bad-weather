@@ -145,4 +145,8 @@ button.default {
   background-color: #f8f8f8;
   font-size: 14px;
 }
+
+.button-hover{
+  background-color: #06f !important;
+}
 </style>

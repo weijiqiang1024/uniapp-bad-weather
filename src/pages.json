@@ -52,6 +52,25 @@
 				"navigationBarTitleText": "视频设备",
 				"navigationBarBackgroundColor": "#06f"
 			}
+		},
+		{
+			"path": "frog/frog",
+			"style": {
+				"navigationBarTitleText": "雾灯设备",
+				"navigationBarBackgroundColor": "#06f"
+			}
+		},{
+			"path": "meteo/meteo",
+			"style": {
+				"navigationBarTitleText": "能见度设备",
+				"navigationBarBackgroundColor": "#06f"
+			}
+		}, {
+			"path": "video/videoPreview",
+			"style": {
+				"navigationBarTitleText": "视频预览",
+				"navigationBarBackgroundColor": "#06f"
+			}
 		}]
 	}],
 	"preloadRule": {

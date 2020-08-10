@@ -3,7 +3,7 @@
     <view v-for="item in videoList" :key="item.id">
       <view class="video-card">
         <view class="video-image">
-          <img src="../static/img/video.png" alt class="image-class" />
+          <img src="../static/img/meteo.png" alt class="image-class" />
         </view>
         <view class="device-info">
           <view class="video-icon">
@@ -34,7 +34,7 @@
 export default {
   name: "",
   mounted() {
-    this.getVideoList();
+    this.getMeteoList();
   },
   data() {
     return {
@@ -44,14 +44,14 @@ export default {
     };
   },
   methods: {
-    async getVideoList() {
+    async getMeteoList() {
       let data = {
         pageIndex: 1,
         pageSize: 10,
       };
 
       try {
-        let res = await this.$minApi.getVideoList(data);
+        let res = await this.$minApi.getMeteoList(data);
         if (res.ret == 1) {
           this.videoList = res.datas;
           this.total = res.count;
@@ -67,11 +67,6 @@ export default {
           title: "查询失败",
         });
       }
-    },
-    goVideoPreview(data) {
-      uni.navigateTo({
-        url: "/pagesA/video/videoPreview?siteInfo=" + JSON.stringify(data),
-      });
     },
     deviceStatus(info) {
       let status = "未知";
@@ -178,7 +173,6 @@ export default {
   justify-content: space-between;
   padding: 10px;
   padding-top: 14px;
-
 }
 
 .device-info-detail {
@@ -206,7 +200,7 @@ export default {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   /* 关键在这里，设置切线的角度和长度 */
-  background: linear-gradient(-120deg, transparent 50px, rgb(248, 174, 43) 0);
+  background: linear-gradient(-120deg, transparent 50px, rgb(11, 215, 109) 0);
   /* 设置之后需要把位置向相反的方向偏移，达到粘合 */
   margin-right: -50px;
 }

@@ -34,7 +34,7 @@
           alt="能见度仪"
           :style="{width:`${bannerItemWidth}px`,height:`${bannerItemHeight}px`}"
           class="meteo-main img-tag"
-          @click="gotoPage('meto')"
+          @click="gotoPage('meteo')"
         />
       </view>
       <view class="baner-item">

@@ -37,9 +37,17 @@ export default {
         queryFrogInfo(url) {
             return minRequest.get(url, {}, { baseURL: baseConfig.frogUrl })
         },
-        //下发雾灯参数
+        //获取视频列表
         getVideoList(data) {
             return minRequest.post('/api/d_video_cameras/list',data)
+        },
+        //获取雾灯列表
+        getFrogList(data) {
+            return minRequest.post('/api/d_frog_lights/list', data)
+        },
+        //获取能见度设备列表
+        getMeteoList(data) {
+            return minRequest.post('/api/d_visibility_meters/list', data)
         },
 
     }

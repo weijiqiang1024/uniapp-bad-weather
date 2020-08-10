@@ -3,7 +3,7 @@
     <view v-for="item in videoList" :key="item.id">
       <view class="video-card">
         <view class="video-image">
-          <img src="../static/img/video.png" alt class="image-class" />
+          <img src="../static/img/frog.png" alt class="image-class" />
         </view>
         <view class="device-info">
           <view class="video-icon">
@@ -16,10 +16,7 @@
           </view>
         </view>
         <view class="device-status">
-          <view
-            class="device-status-real"
-            :style="{color:deviceStatusColor(item.status)}"
-          >{{deviceStatus(item.status)}}</view>
+          <view class="device-status-real" :style="{color:deviceStatusColor(item.status)}">{{deviceStatus(item.status)}}</view>
           <view class="device-info-detail" @click="goVideoPreview(item)">
             <span class="view-detail">预览</span>
             <img src="../../static/img/go_detai.png" alt class="image-class image-detail" />
@@ -34,7 +31,7 @@
 export default {
   name: "",
   mounted() {
-    this.getVideoList();
+    this.getFrogList();
   },
   data() {
     return {
@@ -44,14 +41,14 @@ export default {
     };
   },
   methods: {
-    async getVideoList() {
+    async getFrogList() {
       let data = {
         pageIndex: 1,
         pageSize: 10,
       };
 
       try {
-        let res = await this.$minApi.getVideoList(data);
+        let res = await this.$minApi.getFrogList(data);
         if (res.ret == 1) {
           this.videoList = res.datas;
           this.total = res.count;
@@ -68,11 +65,6 @@ export default {
         });
       }
     },
-    goVideoPreview(data) {
-      uni.navigateTo({
-        url: "/pagesA/video/videoPreview?siteInfo=" + JSON.stringify(data),
-      });
-    },
     deviceStatus(info) {
       let status = "未知";
       if (info) {
@@ -83,9 +75,10 @@ export default {
             ? "离线"
             : "未知";
       }
+
       return status;
     },
-    deviceStatusColor(info) {
+    deviceStatusColor(info){
       let color = "grey";
       if (info) {
         color =
@@ -96,7 +89,7 @@ export default {
             : "grey";
       }
       return color;
-    },
+    }
   },
 };
 </script>
@@ -156,9 +149,10 @@ export default {
   padding: 4px;
   padding-left: 26px;
   flex-grow: 2;
+  
 }
 
-.other-item-road {
+.other-item-road{
   padding-left: 10px;
 }
 
@@ -178,7 +172,6 @@ export default {
   justify-content: space-between;
   padding: 10px;
   padding-top: 14px;
-
 }
 
 .device-info-detail {
@@ -206,7 +199,7 @@ export default {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   /* 关键在这里，设置切线的角度和长度 */
-  background: linear-gradient(-120deg, transparent 50px, rgb(248, 174, 43) 0);
+  background: linear-gradient(-120deg, transparent 50px, rgb(245,66,139) 0);
   /* 设置之后需要把位置向相反的方向偏移，达到粘合 */
   margin-right: -50px;
 }
