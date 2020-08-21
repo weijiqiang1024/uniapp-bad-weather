@@ -2,7 +2,7 @@
   <view class="content">
     <view
       class="sys-title-area"
-      :style="{backgroundImage:`url(${systemTitleImage});height:${windowHeight}px`}"
+      :style="{backgroundImage:`url(${systemTitleImage});`}"
     >
       <span class="sys-name">高速公路</span>
       <span class="sys-name">恶劣天气预警防控系统</span>
@@ -92,7 +92,7 @@ export default {
        */
       this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
       const { windowWidth, windowHeight } = uni.getSystemInfoSync();
-      this.windowHeight = parseInt(windowWidth / 1.66);
+      this.windowHeight = parseInt(windowWidth / 1.66)*2;
     },
     async bindLogin() {
       debugger;
@@ -124,7 +124,7 @@ export default {
         password: this.password,
       };
       let _self = this;
-
+    uni.showLoading({ title: "登录中..." });
       try {
         let res = await this.$minApi.login(data);
         if (res.ret == 1) {
@@ -154,6 +154,7 @@ export default {
           title: "查询失败",
         });
       }
+      uni.hideLoading();
     },
     oauth(value) {
       uni.login({
@@ -278,6 +279,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 34%;
   background-size: 100% 100%;
 }
 
@@ -285,8 +287,8 @@ export default {
   display: inline-block;
   padding-bottom: 4px;
   color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 40rpx;
+  /* font-weight: 700; */
   letter-spacing: 4px;
   text-shadow: rgb(64, 64, 64) 0px 2px 6px;
 }
@@ -308,16 +310,16 @@ export default {
 }
 
 .first-input {
-  margin-bottom: 16px;
+  margin-bottom: 40rpx;
 }
 
 .primary-btn {
   margin: 10px 4%;
   background-color: #06f;
-  font-size: 16px !important;
+  font-size: 34rpx !important;
   letter-spacing: 4px;
-  height: 40px;
-  border-radius: 40px;
-  line-height: 40px;
+  height: 86rpx;
+  border-radius: 86rpx;
+  line-height: 86rpx;
 }
 </style>

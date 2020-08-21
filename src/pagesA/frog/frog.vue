@@ -16,7 +16,10 @@
           </view>
         </view>
         <view class="device-status">
-          <view class="device-status-real" :style="{color:deviceStatusColor(item.status)}">{{deviceStatus(item.status)}}</view>
+          <view
+            class="device-status-real"
+            :style="{color:deviceStatusColor(item.status)}"
+          >{{deviceStatus(item.status)}}</view>
           <view class="device-info-detail" @click="goVideoPreview(item)">
             <span class="view-detail">预览</span>
             <img src="../../static/img/go_detai.png" alt class="image-class image-detail" />
@@ -78,7 +81,7 @@ export default {
 
       return status;
     },
-    deviceStatusColor(info){
+    deviceStatusColor(info) {
       let color = "grey";
       if (info) {
         color =
@@ -89,7 +92,7 @@ export default {
             : "grey";
       }
       return color;
-    }
+    },
   },
 };
 </script>
@@ -109,7 +112,8 @@ export default {
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .device-info {
@@ -149,10 +153,9 @@ export default {
   padding: 4px;
   padding-left: 26px;
   flex-grow: 2;
-  
 }
 
-.other-item-road{
+.other-item-road {
   padding-left: 10px;
 }
 
@@ -193,13 +196,15 @@ export default {
 .video-image {
   display: flex;
   flex: 1;
+  flex-direction: row;
+  align-items: center;
   padding: 20px;
   text-align: center;
   color: #fff;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   /* 关键在这里，设置切线的角度和长度 */
-  background: linear-gradient(-120deg, transparent 50px, rgb(245,66,139) 0);
+  background: linear-gradient(-120deg, transparent 50px, rgb(245, 66, 139) 0);
   /* 设置之后需要把位置向相反的方向偏移，达到粘合 */
   margin-right: -50px;
 }

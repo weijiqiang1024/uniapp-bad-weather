@@ -111,7 +111,8 @@ export default {
   border: 1px solid #ddd;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .device-info {
@@ -194,6 +195,8 @@ export default {
 .video-image {
   display: flex;
   flex: 1;
+  flex-direction: row;
+  align-items: center;
   padding: 20px;
   text-align: center;
   color: #fff;

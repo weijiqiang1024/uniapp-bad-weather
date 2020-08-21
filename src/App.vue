@@ -129,7 +129,7 @@ m-input {
 }
 
 .btn-row {
-  margin-top: 25px;
+  margin-top: 90rpx;
   padding: 10px;
 }
 

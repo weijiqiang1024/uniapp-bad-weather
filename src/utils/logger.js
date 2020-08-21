@@ -1,6 +1,6 @@
 // Credits: borrowed code from fcomb/redux-logger
 
-import _ from "lodash";
+import { cloneDeep } from "lodash";
 // import { _. } from '../util'
 
 export default function createLogger ({
@@ -12,13 +12,13 @@ export default function createLogger ({
   logger = console
 } = {}) {
   return store => {
-    let prevState = _.cloneDeep(store.state)
+    let prevState = cloneDeep(store.state)
 
     store.subscribe((mutation, state) => {
       if (typeof logger === 'undefined') {
         return
       }
-      const nextState = _.cloneDeep(state)
+      const nextState = cloneDeep(state)
 
       if (filter(mutation, prevState, nextState)) {
         const time = new Date()

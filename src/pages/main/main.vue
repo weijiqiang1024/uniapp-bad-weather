@@ -1,8 +1,12 @@
 <template>
   <view class="content">
-    <view
+    <!-- <view
       class="sys-title-area"
       :style="{backgroundImage:`url(${systemMainImage});height:${titleImageHeight}px`}"
+    > -->
+    <view
+      class="sys-title-area"
+      :style="{backgroundImage:`url(${systemMainImage});`}"
     >
       <!-- <span class="sys-name">高速公路</span>
       <span class="sys-name">恶劣天气预警防控系统</span>-->
@@ -10,38 +14,66 @@
     <view class="content-area">
       <view class="baner-item banner-top">
         <view class="baner-item">
-          <img
+          <!-- <img
             src="../../static/img/video_main.png"
             alt="视频"
             :style="{width:`${innerBannerWidth}px`,height:`${bannerItemHeight}px`,marginRight:'10px'}"
             class="video-main img-tag"
             @click="gotoPage('video')"
+          /> -->
+          <img
+            src="../../static/img/video_main.png"
+            alt="视频"
+            :style="{width:`${innerBannerWidth}px`,marginRight:'10px'}"
+            class="video-main img-tag"
+            @click="gotoPage('video')"
           />
         </view>
         <view class="baner-item">
-          <img
+          <!-- <img
             src="../../static/img/frog_main.png"
             alt="雾灯"
             :style="{width:`${innerBannerWidth}px`,height:`${bannerItemHeight}px`}"
+            class="frog-main img-tag"
+            @click="gotoPage('frog')"
+          /> -->
+          <img
+            src="../../static/img/frog_main.png"
+            alt="雾灯"
+            :style="{width:`${innerBannerWidth}px`}"
             class="frog-main img-tag"
             @click="gotoPage('frog')"
           />
         </view>
       </view>
       <view class="baner-item">
-        <img
+        <!-- <img
           src="../../static/img/meteo_main.png"
           alt="能见度仪"
           :style="{width:`${bannerItemWidth}px`,height:`${bannerItemHeight}px`}"
           class="meteo-main img-tag"
           @click="gotoPage('meteo')"
+        /> -->
+         <img
+          src="../../static/img/meteo_main.png"
+          alt="能见度仪"
+          :style="{width:`${bannerItemWidth}px`}"
+          class="meteo-main img-tag"
+          @click="gotoPage('meteo')"
         />
       </view>
       <view class="baner-item">
-        <img
+        <!-- <img
           src="../../static/img/plane_main.png"
           alt="方案下发"
           :style="{width:`${bannerItemWidth}px`,height:`${bannerItemHeight}px`}"
+          class="plane-main img-tag"
+          @click="gotoPage('plane')"
+        /> -->
+        <img
+          src="../../static/img/plane_main.png"
+          alt="方案下发"
+          :style="{width:`${bannerItemWidth}px`}"
           class="plane-main img-tag"
           @click="gotoPage('plane')"
         />
@@ -189,6 +221,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 38vh;
   background-size: 100% 100%;
 }
 .sys-name {
@@ -207,7 +240,9 @@ export default {
   justify-content: center;
   align-items: center;
   /* width: 100%; */
-  padding: 1%;
+  /* padding: 1%; */
+  padding-top: 1.5vh;
+
 }
 
 .baner-item {
@@ -226,7 +261,9 @@ export default {
 .baner-item img {
   position: relative;
 }
-
+.img-tag{
+  height: 18vh;
+}
 .img-tag:after {
   content: "❯";
   color: #fff;
