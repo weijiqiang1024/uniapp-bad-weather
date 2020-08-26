@@ -241,7 +241,7 @@ export default {
   align-items: center;
   /* width: 100%; */
   /* padding: 1%; */
-  padding-top: 1.5vh;
+  padding-top: 0.8vh;
 
 }
 
@@ -262,7 +262,7 @@ export default {
   position: relative;
 }
 .img-tag{
-  height: 18vh;
+  height: 18.5vh;
 }
 .img-tag:after {
   content: "❯";

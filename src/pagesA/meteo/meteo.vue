@@ -20,7 +20,7 @@
             class="device-status-real"
             :style="{color:deviceStatusColor(item.status)}"
           >{{deviceStatus(item.status)}}</view>
-          <view class="device-info-detail" @click="goVideoPreview(item)">
+          <view class="device-info-detail" @click="goMeteoPreview(item)">
             <span class="view-detail">预览</span>
             <img src="../../static/img/go_detai.png" alt class="image-class image-detail" />
           </view>
@@ -92,6 +92,11 @@ export default {
       }
       return color;
     },
+    goMeteoPreview(data){
+      uni.navigateTo({
+        url: "/pagesA/meteo/meteoDetail?siteInfo=" + JSON.stringify(data),
+      });
+    }
   },
 };
 </script>

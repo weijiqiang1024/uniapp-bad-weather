@@ -1,9 +1,6 @@
 <template>
   <view class="content">
-    <view
-      class="sys-title-area"
-      :style="{backgroundImage:`url(${systemTitleImage});`}"
-    >
+    <view class="sys-title-area" :style="{backgroundImage:`url(${systemTitleImage});`}">
       <span class="sys-name">高速公路</span>
       <span class="sys-name">恶劣天气预警防控系统</span>
     </view>
@@ -33,6 +30,7 @@
       <button type="primary" class="primary primary-btn" @tap="bindLogin">登录</button>
     </view>
     <view class="oauth-row" v-if="hasProvider" v-bind:style="{top: positionTop + 'px'}"></view>
+    <view class="copyright-row">©2020 超远信息技术有限公司</view>
   </view>
 </template>
 
@@ -56,7 +54,7 @@ export default {
       password: "",
       positionTop: 0,
       windowHeight: 0,
-      isDevtools: false,
+      isDevtools: true,
       systemTitleImage: config.backImageUrl + "/sys_title_image.png",
     };
   },
@@ -92,7 +90,7 @@ export default {
        */
       this.positionTop = uni.getSystemInfoSync().windowHeight - 100;
       const { windowWidth, windowHeight } = uni.getSystemInfoSync();
-      this.windowHeight = parseInt(windowWidth / 1.66)*2;
+      this.windowHeight = parseInt(windowWidth / 1.66) * 2;
     },
     async bindLogin() {
       debugger;
@@ -124,9 +122,10 @@ export default {
         password: this.password,
       };
       let _self = this;
-    uni.showLoading({ title: "登录中..." });
+      uni.showLoading({ title: "登录中..." });
       try {
         let res = await this.$minApi.login(data);
+        debugger;
         if (res.ret == 1) {
           uni.setStorageSync("uniIdToken", res.token);
           uni.setStorageSync("username", res.userData[0]["username"]);
@@ -136,7 +135,7 @@ export default {
           let ws = new MinSocket({ wsuri: config.wsuri });
           //挂载ws为全局对象 便于退出时 销毁
           this.$ws = ws;
-          
+
           _self.toMain(_self.username);
           uni.showToast({
             icon: "none",
@@ -193,7 +192,6 @@ export default {
       }
     },
     toMain(userName) {
-      debugger;
       this.login(userName);
       /**
        * 强制登录时使用reLaunch方式跳转过来
@@ -211,6 +209,7 @@ export default {
   onReady() {
     this.initPosition();
     this.initProvider();
+    console.log(uni.getSystemInfoSync().platform, 99999);
     // #ifdef MP-WEIXIN
     this.isDevtools = uni.getSystemInfoSync().platform === "devtools";
     // #endif
@@ -321,5 +320,14 @@ export default {
   height: 86rpx;
   border-radius: 86rpx;
   line-height: 86rpx;
+}
+
+.copyright-row {
+  position: absolute;
+  width: 100%;
+  bottom: 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
 }
 </style>

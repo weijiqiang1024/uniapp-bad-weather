@@ -1,6 +1,6 @@
 <template>
    <view class="">
-       video
+       敬请期待...
    </view>
 </template>
 

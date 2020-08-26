@@ -24,7 +24,8 @@
           >
             <swiper-item
               :class="['swiper-item-container']"
-              :style="{position: 'absolute',width: '100%',height: '100%',transform: `translate(${setPanelTranslate(current,0)}%, 0px) scale(${setPanelScale(current,0)})`,opacity:`${setPanelOpacity(current,0)}`}"
+              :style="{position: 'absolute',width: '100%',
+height: '100%',transform: `translate(${swiperStyle[current][0]}%, 0px) translateZ(0px) scale(${current == 0?1:0.78})`}"
             >
               <view class="swiper-item uni-bg-area A">
                 <view class="item-content">
@@ -37,13 +38,14 @@
                   <view v-else-if="siteInfo['devices'][0]['device_type'] == 7">
                     <video-component :deviceInfo="siteInfo['devices'][0]"></video-component>
                   </view>
-                  <view v-else>敬请期待...</view>
+                  <view v-else>无信息</view>
                 </view>
               </view>
             </swiper-item>
             <swiper-item
               :class="['swiper-item-container']"
-              :style="{position: 'absolute',width: '100%',height: '100%',transform: `translate(${setPanelTranslate(current,1)}%, 0px) scale(${setPanelScale(current,1)})`,opacity:`${setPanelOpacity(current,1)}`}"
+              :style="{position: 'absolute',width: '100%',
+height: '100%',transform: `translate(${swiperStyle[current][1]}%, 0px) translateZ(0px) scale(${current == 1?1:0.78})`}"
             >
               <view class="swiper-item uni-bg-area B">
                 <view class="item-content">
@@ -56,13 +58,14 @@
                   <view v-else-if="siteInfo['devices'][1]['device_type'] == 7">
                     <video-component :deviceInfo="siteInfo['devices'][1]"></video-component>
                   </view>
-                  <view v-else>敬请期待...</view>
+                  <view v-else>无信息</view>
                 </view>
               </view>
             </swiper-item>
             <swiper-item
               :class="['swiper-item-container']"
-              :style="{position: 'absolute',width: '100%',height: '100%',transform: `translate(${setPanelTranslate(current,2)}%, 0px) scale(${setPanelScale(current,2)})`,opacity:`${setPanelOpacity(current,2)}`}"
+              :style="{position: 'absolute',width: '100%',
+height: '100%',transform: `translate(${swiperStyle[current][2]}%, 0px) translateZ(0px) scale(${current == 2?1:0.78})`}"
             >
               <view class="swiper-item uni-bg-area C">
                 <view class="item-content">
@@ -75,7 +78,7 @@
                   <view v-else-if="siteInfo['devices'][2]['device_type'] == 7">
                     <video-component :deviceInfo="siteInfo['devices'][2]"></video-component>
                   </view>
-                  <view v-else>敬请期待...</view>
+                  <view v-else>无信息</view>
                 </view>
               </view>
             </swiper-item>
@@ -100,7 +103,7 @@ export default {
   },
   onLoad: function (option) {
     //option为object类型，会序列化上个页面传递的参数
-    // console.log(option); //打印出上个页面传递的参数。
+    console.log(option); //打印出上个页面传递的参数。
     this.siteInfo = JSON.parse(option.siteInfo);
   },
   mounted() {
@@ -143,38 +146,17 @@ export default {
       });
     },
     currentChange(e) {
-      // console.log(e, 88888);
+      console.log(e, 88888);
       this.current = e.detail.current;
     },
     sortDevice() {},
-    setPanelTranslate(select, index) {
-      let value = 0;
-      if (select != null || select != undefined) {
-        value = this.swiperStyle[select][index];
-      }
-      return value;
-    },
-    setPanelScale(select, index) {
-      let value = 1;
-      if (select != null || select != undefined) {
-        value = select == index ? 1 : 0.78;
-      }
-      return value;
-    },
-    setPanelOpacity(select, index) {
-      let value = 1;
-      if (select != null || select != undefined) {
-        value = select == index ? 1 : 0.5;
-      }
-      return value;
+  },
+  watch: {
+    current: function (oldVal, newVal) {
+      debugger;
+      console.log(oldVal, newVal, 9999);
     },
   },
-  // watch: {
-  //   current: function (oldVal, newVal) {
-  //     debugger;
-  //     console.log(oldVal, newVal, 9999);
-  //   },
-  // },
 };
 </script>
 

@@ -19,14 +19,16 @@
 		{
 			"path": "pages/meteo/meteo",
 			"style": {
-				"navigationBarTitleText": "能见度",
-				"navigationBarBackgroundColor": "#06f"
+				"navigationBarTitleText": "历史能见度",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle":"black"
 			}
 		} ,{
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"navigationBarBackgroundColor": "#06f"
+				"navigationBarBackgroundColor": "#06f",
+				"navigationStyle": "custom"
 
 			}
 		} 
@@ -64,6 +66,13 @@
 			"style": {
 				"navigationBarTitleText": "能见度设备",
 				"navigationBarBackgroundColor": "#06f"
+			}
+		}, {
+			"path": "meteo/meteoDetail",
+			"style": {
+				"navigationBarTitleText": "能见度设备详情",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationStyle": "custom"
 			}
 		}, {
 			"path": "video/videoPreview",
