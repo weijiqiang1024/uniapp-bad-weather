@@ -19,11 +19,18 @@
 		{
 			"path": "pages/meteo/meteo",
 			"style": {
-				"navigationBarTitleText": "历史能见度",
+				"navigationBarTitleText": "能见度查询",
 				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle":"black"
 			}
-		} ,{
+		}, {
+			"path": "pages/meteo/meteoData",
+			"style": {
+				"navigationBarTitleText": "历史能见度",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		}, {
 			"path": "pages/user/user",
 			"style": {
 				"navigationBarTitleText": "我的",

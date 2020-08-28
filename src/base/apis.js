@@ -49,6 +49,10 @@ export default {
         getMeteoList(data) {
             return minRequest.post('/api/d_visibility_meters/list', data)
         },
+        //获取能见度设备列表
+        getMeteoData(data) {
+            return minRequest.post('/api/meteorological_data/list', data)
+        },
 
     }
 }
